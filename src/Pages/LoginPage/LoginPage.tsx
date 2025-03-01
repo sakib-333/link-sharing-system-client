@@ -1,6 +1,7 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import useGoogleSignin from "../../Hooks/useGoogleSignin/useGoogleSignin";
+import useAuth from "../../Hooks/useAuth/useAuth";
 
 type Inputs = {
   enail: string;
@@ -8,9 +9,17 @@ type Inputs = {
 };
 
 const LoginPage = () => {
+  const { setUserLoading, signinWithEmailPassword } = useAuth();
   const { register, handleSubmit } = useForm<Inputs>();
   const googleSignin = useGoogleSignin();
-  const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
+    signinWithEmailPassword(data.enail, data.password)
+      .then(() => {
+        console.log("Login successful");
+      })
+      .catch(() => console.log("Something went wrong"))
+      .finally(() => setUserLoading(false));
+  };
   return (
     <div className="w-full h-screen flex items-center justify-center">
       <form
