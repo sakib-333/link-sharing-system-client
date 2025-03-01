@@ -4,6 +4,7 @@ import HomePage from "../Pages/HomePage/HomePage";
 import LoginPage from "../Pages/LoginPage/LoginPage";
 import RegisterPage from "../Pages/RegisterPage/RegisterPage";
 import AddPage from "../Pages/AddPage/AddPage";
+import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -24,7 +25,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "/add",
-        element: <AddPage />,
+        element: (
+          <PrivateRoute>
+            <AddPage />
+          </PrivateRoute>
+        ),
       },
     ],
   },
