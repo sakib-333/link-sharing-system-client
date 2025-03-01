@@ -2,6 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import "./Navbar.css";
 import useAuth from "../../Hooks/useAuth/useAuth";
 import defaultUser from "/defaultUser.svg";
+import linkLogo from "/linkLogo.svg";
 
 const Navbar = () => {
   const { user, handleLogout } = useAuth();
@@ -22,7 +23,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-base-200 shadow-sm">
+    <div className="navbar bg-base-300 shadow-sm">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -49,8 +50,9 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <Link to={"/"} className="font-bold">
-          Links
+        <Link to={"/"} className="flex items-center gap-2">
+          <img className="w-10 h-10" src={linkLogo} alt="logo" />
+          <p>Links</p>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
