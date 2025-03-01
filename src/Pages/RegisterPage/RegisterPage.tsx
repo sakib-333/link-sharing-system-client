@@ -2,27 +2,44 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
 type Inputs = {
+  displayName: string;
   enail: string;
   password: string;
+  photoURL: string;
 };
 
-const LoginPage = () => {
+const RegisterPage = () => {
   const { register, handleSubmit } = useForm<Inputs>();
   const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => console.log(data);
+
   return (
     <div className="w-full h-screen flex items-center justify-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl"
+        className="card bg-base-100 w-full max-w-sm shadow-2xl"
       >
         <div className="card-body">
           <fieldset className="fieldset">
+            <label className="fieldset-label">Full Name</label>
+            <input
+              type="text"
+              className="input"
+              {...register("displayName", { required: true })}
+              placeholder="Full Name"
+            />
             <label className="fieldset-label">Email</label>
             <input
               type="email"
               className="input"
               {...register("enail", { required: true })}
               placeholder="Email"
+            />
+            <label className="fieldset-label">Photo URL</label>
+            <input
+              type="text"
+              className="input"
+              {...register("photoURL", { required: true })}
+              placeholder="Photo URL"
             />
             <label className="fieldset-label">Password</label>
             <input
@@ -32,11 +49,11 @@ const LoginPage = () => {
               placeholder="Password"
             />
 
-            <button className="btn btn-neutral mt-4">Login</button>
+            <button className="btn btn-neutral mt-4">Register</button>
           </fieldset>
           <p className="text-xs text-center">
-            Don't have an account? Register{" "}
-            <Link className="text-primary" to={"/register"}>
+            Already have an account? Login{" "}
+            <Link className="text-primary" to={"/login"}>
               here
             </Link>
           </p>
@@ -46,4 +63,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default RegisterPage;
