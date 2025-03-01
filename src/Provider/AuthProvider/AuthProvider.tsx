@@ -13,12 +13,14 @@ import {
   UserCredential,
 } from "firebase/auth";
 import { auth } from "../../Firebase/firebase.config";
+import useAxiosPublic from "../../Hooks/useAxiosPublic/useAxiosPublic";
 
 type AuthProviderProps = {
   children: ReactNode;
 };
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
+  const axiosPublic = useAxiosPublic();
   const [user, setUser] = useState<User | null>(null);
   const [userLoading, setUserLoading] = useState<boolean>(true);
   const googleProvider = new GoogleAuthProvider();
@@ -51,8 +53,20 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     const unsubscribe = onAuthStateChanged(auth, (currUser) => {
       if (currUser) {
         setUser(currUser);
+        axiosPublic
+          .post("/jwt", { email: currUser.email })
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch(() => console.log("Something went wrong"));
         setUserLoading(false);
       } else {
+        axiosPublic
+          .post("/logout")
+          .then((res) => {
+            console.log(res.data);
+          })
+          .catch(() => console.log("Something went wrong"));
         setUserLoading(false);
       }
     });
