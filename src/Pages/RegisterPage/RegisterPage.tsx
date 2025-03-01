@@ -26,53 +26,54 @@ const RegisterPage = () => {
   };
 
   return (
-    <div className="w-full h-screen flex items-center justify-center">
+    <div className="w-full min-h-screen flex items-center justify-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="card bg-base-100 w-full max-w-sm shadow-2xl"
+        className="w-full max-w-sm space-y-3"
       >
-        <div className="card-body">
-          <fieldset className="fieldset">
-            <label className="fieldset-label">Full Name</label>
-            <input
-              type="text"
-              className="input"
-              {...register("displayName", { required: true })}
-              placeholder="Full Name"
-            />
-            <label className="fieldset-label">Email</label>
-            <input
-              type="email"
-              className="input"
-              {...register("enail", { required: true })}
-              placeholder="Email"
-            />
-            <label className="fieldset-label">Photo URL</label>
-            <input
-              type="text"
-              className="input"
-              {...register("photoURL", { required: true })}
-              placeholder="Photo URL"
-            />
-            <label className="fieldset-label">Password</label>
-            <input
-              type="password"
-              {...register("password", { required: true })}
-              className="input"
-              placeholder="Password"
-            />
-
-            <button className="btn btn-neutral mt-4">Register</button>
-          </fieldset>
-          <div className="divider"></div>
-          {googleSignin}
-          <p className="text-xs text-center">
-            Already have an account? Login{" "}
-            <Link className="text-primary" to={"/login"}>
-              here
-            </Link>
-          </p>
+        <div>
+          <input
+            type="text"
+            className="input w-full"
+            {...register("displayName", { required: true })}
+            placeholder="Full Name"
+          />
         </div>
+        <div>
+          <input
+            type="email"
+            className="input w-full"
+            {...register("enail", { required: true })}
+            placeholder="Email"
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            className="input w-full"
+            {...register("photoURL", { required: true })}
+            placeholder="Photo URL"
+          />
+        </div>
+        <div>
+          <input
+            type="password"
+            {...register("password", { required: true })}
+            className="input w-full"
+            placeholder="Password"
+          />
+        </div>
+        <div>
+          <button className="btn btn-neutral w-full">Register</button>
+        </div>
+        <div className="divider"></div>
+        <div className="w-full">{googleSignin}</div>
+        <p className="text-xs text-center">
+          Already have an account? Login{" "}
+          <Link className="text-primary" to={"/login"}>
+            here
+          </Link>
+        </p>
       </form>
     </div>
   );

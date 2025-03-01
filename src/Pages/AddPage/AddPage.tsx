@@ -19,60 +19,64 @@ const AddPage = () => {
   };
 
   return (
-    <div className="w-full h-screen flex items-center justify-center">
+    <div className="w-full min-h-screen flex items-center justify-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-base-100 w-full max-w-sm shadow-2xl p-8 space-y-4"
+        className="w-full max-w-sm  space-y-3"
       >
-        <label className="fieldset-label">Title</label>
-        <input
-          type="text"
-          {...register("title", { required: true })}
-          className="input"
-          placeholder="Title"
-        />
-        <label className="fieldset-label">Select</label>
-        <select
-          onChange={handleSelectOption}
-          defaultValue="text"
-          className="select"
-        >
-          <option value={"text"}>Text</option>
-          <option value={"image"}>Image</option>
-          <option value={"file"}>File</option>
-        </select>
-        {selOptn === "text" && (
-          <>
-            <label className="fieldset-label">Text</label>
-            <textarea
-              {...register("text", { required: true })}
-              className="textarea"
-              placeholder="Text..."
-            ></textarea>
-          </>
-        )}
-        {selOptn === "file" && (
-          <>
-            <label className="fieldset-label">File</label>
-            <input
-              {...register("file", { required: true })}
-              type="file"
-              className="file-input"
-            />
-          </>
-        )}
-        {selOptn === "image" && (
-          <>
-            <label className="fieldset-label">Image</label>
-            <input
-              {...register("image", { required: true })}
-              accept="image/png, image/jpg, image/jpeg"
-              type="file"
-              className="file-input"
-            />
-          </>
-        )}
-        <button className="btn btn-neutral mt-4 w-full">Add</button>
+        <div>
+          <input
+            type="text"
+            {...register("title", { required: true })}
+            className="input w-full"
+            placeholder="Title"
+          />
+        </div>
+        <div>
+          <select
+            onChange={handleSelectOption}
+            defaultValue="text"
+            className="select w-full"
+          >
+            <option value={"text"}>Text</option>
+            <option value={"image"}>Image</option>
+            <option value={"file"}>File</option>
+          </select>
+        </div>
+        <div>
+          {selOptn === "text" && (
+            <>
+              <textarea
+                {...register("text", { required: true })}
+                className="textarea w-full"
+                placeholder="Text..."
+              ></textarea>
+            </>
+          )}
+          {selOptn === "file" && (
+            <>
+              <input
+                {...register("file", { required: true })}
+                type="file"
+                className="file-input w-full"
+              />
+            </>
+          )}
+          {selOptn === "image" && (
+            <>
+              <input
+                {...register("image", { required: true })}
+                accept="image/png, image/jpg, image/jpeg"
+                type="file"
+                className="file-input w-full"
+              />
+            </>
+          )}
+        </div>
+
+        <div>
+          <button className="btn btn-neutral w-full">Add</button>
+        </div>
       </form>
     </div>
   );

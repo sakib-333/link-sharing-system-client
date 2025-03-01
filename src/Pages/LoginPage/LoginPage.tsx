@@ -21,41 +21,40 @@ const LoginPage = () => {
       .finally(() => setUserLoading(false));
   };
   return (
-    <div className="w-full h-screen flex items-center justify-center">
+    <div className="w-full min-h-screen flex items-center justify-center">
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl"
+        className="max-w-sm w-full space-y-3"
       >
-        <div className="card-body">
-          <fieldset className="fieldset">
-            <label className="fieldset-label">Email</label>
-            <input
-              type="email"
-              className="input"
-              {...register("enail", { required: true })}
-              placeholder="Email"
-            />
-            <label className="fieldset-label">Password</label>
-            <input
-              type="password"
-              {...register("password", { required: true })}
-              className="input"
-              placeholder="Password"
-            />
-
-            <button type="submit" className="btn btn-neutral mt-4">
-              Login
-            </button>
-          </fieldset>
-          <div className="divider"></div>
-          {googleSignin}
-          <p className="text-xs text-center">
-            Don't have an account? Register{" "}
-            <Link className="text-primary" to={"/register"}>
-              here
-            </Link>
-          </p>
+        <div>
+          <input
+            type="email"
+            className="input w-full"
+            {...register("enail", { required: true })}
+            placeholder="Email"
+          />
         </div>
+        <div>
+          <input
+            type="password"
+            {...register("password", { required: true })}
+            className="input w-full"
+            placeholder="Password"
+          />
+        </div>
+        <div>
+          <button type="submit" className="btn btn-neutral w-full">
+            Login
+          </button>
+        </div>
+        <div className="divider"></div>
+        <div className="w-full">{googleSignin}</div>
+        <p className="text-xs text-center">
+          Don't have an account? Register{" "}
+          <Link className="text-primary" to={"/register"}>
+            here
+          </Link>
+        </p>
       </form>
     </div>
   );
