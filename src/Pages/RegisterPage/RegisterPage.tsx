@@ -1,5 +1,6 @@
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
+import useGoogleSignin from "../../Hooks/useGoogleSignin/useGoogleSignin";
 
 type Inputs = {
   displayName: string;
@@ -10,6 +11,7 @@ type Inputs = {
 
 const RegisterPage = () => {
   const { register, handleSubmit } = useForm<Inputs>();
+  const googleSignin = useGoogleSignin();
   const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => console.log(data);
 
   return (
@@ -51,6 +53,8 @@ const RegisterPage = () => {
 
             <button className="btn btn-neutral mt-4">Register</button>
           </fieldset>
+          <div className="divider"></div>
+          {googleSignin}
           <p className="text-xs text-center">
             Already have an account? Login{" "}
             <Link className="text-primary" to={"/login"}>
