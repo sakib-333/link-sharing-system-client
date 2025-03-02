@@ -14,6 +14,8 @@ import {
 } from "firebase/auth";
 import { auth } from "../../Firebase/firebase.config";
 import useAxiosPublic from "../../Hooks/useAxiosPublic/useAxiosPublic";
+import { successAlert } from "../../Alerts/SuccessAlert/successAlert";
+import { errorAlert } from "../../Alerts/ErrorAlert/errorAlert";
 
 type AuthProviderProps = {
   children: ReactNode;
@@ -41,10 +43,10 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     setUserLoading(true);
     signOut(auth)
       .then(() => {
-        console.log("Signout successful.");
+        successAlert("Success", "Signout successful.");
         setUser(null);
       })
-      .catch(() => console.log("Something went wrong."))
+      .catch(() => errorAlert())
       .finally(() => setUserLoading(false));
   };
 
