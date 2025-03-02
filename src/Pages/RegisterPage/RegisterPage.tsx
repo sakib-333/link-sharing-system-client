@@ -68,7 +68,7 @@ const RegisterPage = () => {
           />
         </div>
         <div>
-          <button className="btn btn-neutral w-full">Register</button>
+          <button className="primary-btn w-full">Register</button>
         </div>
         <div className="divider"></div>
         <div className="w-full">{googleSignin}</div>

@@ -47,7 +47,7 @@ const LoginPage = () => {
           />
         </div>
         <div>
-          <button type="submit" className="btn btn-neutral w-full">
+          <button type="submit" className="primary-btn w-full">
             Login
           </button>
         </div>

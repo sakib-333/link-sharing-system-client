@@ -119,7 +119,7 @@ const AddPage = () => {
               Add
             </button>
           ) : (
-            <button className="btn btn-neutral w-full">Add</button>
+            <button className="primary-btn w-full">Add</button>
           )}
         </div>
       </form>

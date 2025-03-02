@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .primary-btn {
+    @apply px-3 py-2 bg-[#3f51bf] rounded hover:bg-[#707abc] text-white;
+  }
+}
