@@ -5,6 +5,7 @@ import LoginPage from "../Pages/LoginPage/LoginPage";
 import RegisterPage from "../Pages/RegisterPage/RegisterPage";
 import AddPage from "../Pages/AddPage/AddPage";
 import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
+import MyLinksPage from "../Pages/MyLinksPage/MyLinksPage";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <AddPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/my-links",
+        element: (
+          <PrivateRoute>
+            <MyLinksPage />
           </PrivateRoute>
         ),
       },
