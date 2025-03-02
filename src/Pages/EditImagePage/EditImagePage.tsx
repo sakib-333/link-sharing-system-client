@@ -99,12 +99,12 @@ const EditImagePage = () => {
           </div>
           <div>
             {isLoading ? (
-              <button className="btn btn-neutral w-full">
+              <button className="btn primary-btn w-full">
                 <span className="loading loading-spinner"></span>
                 Add
               </button>
             ) : (
-              <button className="btn btn-neutral w-full">Save</button>
+              <button className="btn primary-btn w-full">Save</button>
             )}
           </div>
         </form>

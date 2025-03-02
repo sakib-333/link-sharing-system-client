@@ -117,7 +117,7 @@ const AddPage = () => {
           </div>
           <div>
             {isLoading ? (
-              <button className="btn btn-neutral w-full">
+              <button className="btn primary-btn w-full">
                 <span className="loading loading-spinner"></span>
                 Add
               </button>
