@@ -1,7 +1,9 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useGoogleSignin from "../../Hooks/useGoogleSignin/useGoogleSignin";
 import useAuth from "../../Hooks/useAuth/useAuth";
+import { successAlert } from "../../Alerts/SuccessAlert/successAlert";
+import { errorAlert } from "../../Alerts/ErrorAlert/errorAlert";
 
 type Inputs = {
   displayName: string;
@@ -11,6 +13,7 @@ type Inputs = {
 };
 
 const RegisterPage = () => {
+  const navigate = useNavigate();
   const { setUserLoading, registerUserWithEmailPassword, updateUserProfile } =
     useAuth();
   const { register, handleSubmit } = useForm<Inputs>();
@@ -19,9 +22,10 @@ const RegisterPage = () => {
     registerUserWithEmailPassword(data.enail, data.password)
       .then(() => updateUserProfile(data.displayName, data.photoURL))
       .then(() => {
-        console.log("Registration successful.");
+        successAlert("Success", "Registration successful.");
+        navigate("/");
       })
-      .catch(() => console.log("Something went wrong"))
+      .catch(() => errorAlert())
       .finally(() => setUserLoading(false));
   };
 

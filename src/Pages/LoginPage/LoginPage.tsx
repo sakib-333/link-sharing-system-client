@@ -1,7 +1,9 @@
 import { SubmitHandler, useForm } from "react-hook-form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useGoogleSignin from "../../Hooks/useGoogleSignin/useGoogleSignin";
 import useAuth from "../../Hooks/useAuth/useAuth";
+import { successAlert } from "../../Alerts/SuccessAlert/successAlert";
+import { errorAlert } from "../../Alerts/ErrorAlert/errorAlert";
 
 type Inputs = {
   enail: string;
@@ -9,15 +11,17 @@ type Inputs = {
 };
 
 const LoginPage = () => {
+  const navigate = useNavigate();
   const { setUserLoading, signinWithEmailPassword } = useAuth();
   const { register, handleSubmit } = useForm<Inputs>();
   const googleSignin = useGoogleSignin();
   const onSubmit: SubmitHandler<Inputs> = (data: Inputs) => {
     signinWithEmailPassword(data.enail, data.password)
       .then(() => {
-        console.log("Login successful");
+        successAlert("Success", "Login successful");
+        navigate("/");
       })
-      .catch(() => console.log("Something went wrong"))
+      .catch(() => errorAlert())
       .finally(() => setUserLoading(false));
   };
   return (

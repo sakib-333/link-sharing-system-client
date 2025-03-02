@@ -3,6 +3,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import useAuth from "../../Hooks/useAuth/useAuth";
 import useAxiosPublic from "../../Hooks/useAxiosPublic/useAxiosPublic";
 import { useState } from "react";
+import { successAlert } from "../../Alerts/SuccessAlert/successAlert";
+import { errorAlert } from "../../Alerts/ErrorAlert/errorAlert";
 
 type Inputs = {
   title: string;
@@ -50,13 +52,13 @@ const AddPage = () => {
         axiosPublic
           .post("/upload-image", { ...imageData })
           .then(({ data }) => {
-            console.log(data);
+            successAlert("Success", data.message);
             reset();
           })
-          .catch(() => console.log("Something went wrong."));
+          .catch(() => errorAlert());
       }
     } catch (err) {
-      console.log(err);
+      errorAlert();
     } finally {
       setIsLoading(false);
     }
