@@ -7,6 +7,7 @@ import AddPage from "../Pages/AddPage/AddPage";
 import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
 import MyLinksPage from "../Pages/MyLinksPage/MyLinksPage";
 import ImageDetailsPage from "../Pages/ImageDetailsPage/ImageDetailsPage";
+import EditImagePage from "../Pages/EditImagePage/EditImagePage";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +39,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyLinksPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/edit/:id",
+        element: (
+          <PrivateRoute>
+            <EditImagePage />
           </PrivateRoute>
         ),
       },
