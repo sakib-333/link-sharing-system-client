@@ -5,6 +5,7 @@ import useAxiosPublic from "../../Hooks/useAxiosPublic/useAxiosPublic";
 import { useState } from "react";
 import { successAlert } from "../../Alerts/SuccessAlert/successAlert";
 import { errorAlert } from "../../Alerts/ErrorAlert/errorAlert";
+import PageTitle from "../../Components/PageTitle/PageTitle";
 
 type Inputs = {
   title: string;
@@ -65,65 +66,68 @@ const AddPage = () => {
   };
 
   return (
-    <div className="w-full min-h-screen flex items-center justify-center">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-sm  space-y-3"
-      >
-        <div>
-          <label>Title</label>
-          <input
-            type="text"
-            {...register("title", { required: true })}
-            className="input w-full"
-            placeholder="Title"
-          />
-        </div>
-        <div>
-          <label>Select image</label>
-          <input
-            {...register("image", { required: true })}
-            accept="image/png, image/jpg, image/jpeg"
-            type="file"
-            className="file-input w-full"
-          />
-        </div>
-        <div>
-          <label>Access control</label>
-          <select
-            defaultValue="private"
-            {...register("visibility", { required: true })}
-            className="select w-full"
-          >
-            <option value={"private"}>Private</option>
-            <option value={"public"}>Public</option>
-          </select>
-        </div>
-        <div>
-          <label>Expires in</label>
-          <select
-            defaultValue="0"
-            {...register("expire", { required: true })}
-            className="select w-full"
-          >
-            <option value={"3600"}>1h</option>
-            <option value={"7200"}>2h</option>
-            <option value={"10800"}>3h</option>
-            <option value={"0"}>Never</option>
-          </select>
-        </div>
-        <div>
-          {isLoading ? (
-            <button className="btn btn-neutral w-full">
-              <span className="loading loading-spinner"></span>
-              Add
-            </button>
-          ) : (
-            <button className="primary-btn w-full">Add</button>
-          )}
-        </div>
-      </form>
-    </div>
+    <>
+      <PageTitle title="Add" />
+      <div className="w-full min-h-screen flex items-center justify-center">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full max-w-sm  space-y-3"
+        >
+          <div>
+            <label>Title</label>
+            <input
+              type="text"
+              {...register("title", { required: true })}
+              className="input w-full"
+              placeholder="Title"
+            />
+          </div>
+          <div>
+            <label>Select image</label>
+            <input
+              {...register("image", { required: true })}
+              accept="image/png, image/jpg, image/jpeg"
+              type="file"
+              className="file-input w-full"
+            />
+          </div>
+          <div>
+            <label>Access control</label>
+            <select
+              defaultValue="private"
+              {...register("visibility", { required: true })}
+              className="select w-full"
+            >
+              <option value={"private"}>Private</option>
+              <option value={"public"}>Public</option>
+            </select>
+          </div>
+          <div>
+            <label>Expires in</label>
+            <select
+              defaultValue="0"
+              {...register("expire", { required: true })}
+              className="select w-full"
+            >
+              <option value={"3600"}>1h</option>
+              <option value={"7200"}>2h</option>
+              <option value={"10800"}>3h</option>
+              <option value={"0"}>Never</option>
+            </select>
+          </div>
+          <div>
+            {isLoading ? (
+              <button className="btn btn-neutral w-full">
+                <span className="loading loading-spinner"></span>
+                Add
+              </button>
+            ) : (
+              <button className="primary-btn w-full">Add</button>
+            )}
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

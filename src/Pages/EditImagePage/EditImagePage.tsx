@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 import LoadingSpinner from "../../Components/LoadingSpinner/LoadingSpinner";
 import { errorAlert } from "../../Alerts/ErrorAlert/errorAlert";
 import { successAlert } from "../../Alerts/SuccessAlert/successAlert";
+import PageTitle from "../../Components/PageTitle/PageTitle";
 
 type Inputs = {
   title: string;
@@ -58,54 +59,57 @@ const EditImagePage = () => {
   }
 
   return (
-    <div className="w-full min-h-screen flex items-center justify-center">
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="w-full max-w-sm  space-y-3"
-      >
-        <div>
-          <label>Title</label>
-          <input
-            type="text"
-            {...register("title", { required: true })}
-            className="input w-full"
-            placeholder="Title"
-            defaultValue={image.title}
-          />
-        </div>
-        <div>
-          <label>Link</label>
-          <input
-            type="text"
-            defaultValue={image.imageURL}
-            readOnly
-            className="input w-full"
-            placeholder="Title"
-          />
-        </div>
-        <div>
-          <label>Access control</label>
-          <select
-            defaultValue={image.visibility}
-            {...register("visibility", { required: true })}
-            className="select w-full"
-          >
-            <option value={"private"}>Private</option>
-            <option value={"public"}>Public</option>
-          </select>
-        </div>
-        <div>
-          {isLoading ? (
-            <button className="btn btn-neutral w-full">
-              <span className="loading loading-spinner"></span>
-              Add
-            </button>
-          ) : (
-            <button className="btn btn-neutral w-full">Save</button>
-          )}
-        </div>
-      </form>
-    </div>
+    <>
+      <PageTitle title="Edit" />
+      <div className="w-full min-h-screen flex items-center justify-center">
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          className="w-full max-w-sm  space-y-3"
+        >
+          <div>
+            <label>Title</label>
+            <input
+              type="text"
+              {...register("title", { required: true })}
+              className="input w-full"
+              placeholder="Title"
+              defaultValue={image.title}
+            />
+          </div>
+          <div>
+            <label>Link</label>
+            <input
+              type="text"
+              defaultValue={image.imageURL}
+              readOnly
+              className="input w-full"
+              placeholder="Title"
+            />
+          </div>
+          <div>
+            <label>Access control</label>
+            <select
+              defaultValue={image.visibility}
+              {...register("visibility", { required: true })}
+              className="select w-full"
+            >
+              <option value={"private"}>Private</option>
+              <option value={"public"}>Public</option>
+            </select>
+          </div>
+          <div>
+            {isLoading ? (
+              <button className="btn btn-neutral w-full">
+                <span className="loading loading-spinner"></span>
+                Add
+              </button>
+            ) : (
+              <button className="btn btn-neutral w-full">Save</button>
+            )}
+          </div>
+        </form>
+      </div>
+    </>
   );
 };
 

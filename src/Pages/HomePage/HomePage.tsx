@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import LinkCard from "../../Components/LinkCard/LinkCard";
 import useAxiosPublic from "../../Hooks/useAxiosPublic/useAxiosPublic";
+import PageTitle from "../../Components/PageTitle/PageTitle";
 
 type Link = {
   _id: string;
@@ -26,11 +27,14 @@ const HomePage = () => {
   });
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
-      {allLinks.map((link: Link) => (
-        <LinkCard key={link._id} link={link} />
-      ))}
-    </div>
+    <>
+      <PageTitle title={"Home"} />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center">
+        {allLinks.map((link: Link) => (
+          <LinkCard key={link._id} link={link} />
+        ))}
+      </div>
+    </>
   );
 };
 
