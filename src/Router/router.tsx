@@ -6,6 +6,7 @@ import RegisterPage from "../Pages/RegisterPage/RegisterPage";
 import AddPage from "../Pages/AddPage/AddPage";
 import PrivateRoute from "../Components/PrivateRoute/PrivateRoute";
 import MyLinksPage from "../Pages/MyLinksPage/MyLinksPage";
+import ImageDetailsPage from "../Pages/ImageDetailsPage/ImageDetailsPage";
 
 export const router = createBrowserRouter([
   {
@@ -37,6 +38,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <MyLinksPage />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/details/:id",
+        element: (
+          <PrivateRoute>
+            <ImageDetailsPage />
           </PrivateRoute>
         ),
       },

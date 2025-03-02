@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
-import { MdPublic } from "react-icons/md";
 import { GiClick } from "react-icons/gi";
-import { RiGitRepositoryPrivateFill } from "react-icons/ri";
+import { IoIosLink } from "react-icons/io";
 
 type Link = {
   _id: string;
@@ -18,7 +17,6 @@ interface LinkCardProps {
 }
 
 const LinkCard = ({ link }: LinkCardProps) => {
-  console.log(link);
   return (
     <div className="card max-w-md w-full border rounded bg-base-100 card-sm shadow-sm hover:shadow-lg hover:scale-[1.01] transition">
       <div className="card-body">
@@ -31,11 +29,7 @@ const LinkCard = ({ link }: LinkCardProps) => {
         </p>
         <p className="flex items-center gap-2">
           <span>
-            {link.visibility === "private" ? (
-              <RiGitRepositoryPrivateFill />
-            ) : (
-              <MdPublic />
-            )}
+            <IoIosLink />
           </span>{" "}
           <span>{link.imageURL}</span>
         </p>
