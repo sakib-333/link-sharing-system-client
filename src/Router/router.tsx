@@ -52,11 +52,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/details/:id",
-        element: (
-          <PrivateRoute>
-            <ImageDetailsPage />
-          </PrivateRoute>
-        ),
+        element: <ImageDetailsPage />,
       },
     ],
   },

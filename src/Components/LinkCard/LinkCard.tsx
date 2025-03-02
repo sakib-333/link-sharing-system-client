@@ -1,7 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { GiClick } from "react-icons/gi";
 import { IoIosLink } from "react-icons/io";
+import useAuth from "../../Hooks/useAuth/useAuth";
 
 type Link = {
   _id: string;
@@ -17,6 +18,17 @@ interface LinkCardProps {
 }
 
 const LinkCard = ({ link }: LinkCardProps) => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleShowDetails = (img: Link) => {
+    if (!user && img.visibility === "private") {
+      navigate("/login");
+    } else {
+      navigate(`/details/${img._id}`);
+    }
+  };
+
   return (
     <div className="card max-w-md w-full border rounded bg-base-100 card-sm shadow-sm hover:shadow-lg hover:scale-[1.01] transition">
       <div className="card-body">
@@ -40,9 +52,12 @@ const LinkCard = ({ link }: LinkCardProps) => {
           <span>{link.totalAccess}</span>
         </p>
         <div className="justify-end card-actions">
-          <Link to={`/details/${link._id}`}>
-            <button className="btn btn-primary bg-[#3f51bf]">Details</button>
-          </Link>
+          <button
+            onClick={() => handleShowDetails(link)}
+            className="btn btn-primary bg-[#3f51bf]"
+          >
+            Details
+          </button>
         </div>
       </div>
     </div>
