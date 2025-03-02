@@ -7,6 +7,8 @@ import { GiClick } from "react-icons/gi";
 import { MdDelete, MdPublic } from "react-icons/md";
 import { RiGitRepositoryPrivateFill } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import Swal from "sweetalert2";
+import { errorAlert } from "../../Alerts/ErrorAlert/errorAlert";
 
 type Link = {
   _id: string;
@@ -20,7 +22,11 @@ type Link = {
 const MyLinksPage = () => {
   const axiosPublic = useAxiosPublic();
 
-  const { data: myLinks = [], isLoading } = useQuery({
+  const {
+    data: myLinks = [],
+    isLoading,
+    refetch,
+  } = useQuery({
     queryKey: ["myLinks"],
     queryFn: async () => {
       const res = await axiosPublic.post("/my-links");
@@ -31,6 +37,36 @@ const MyLinksPage = () => {
       }
     },
   });
+
+  const handleDeleteImage = (id: string) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Delete",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosPublic
+          .delete(`/delete-image?id=${id}`)
+          .then(({ data }) => {
+            if (data.acknowledgement) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Image has been deleted.",
+                icon: "success",
+              });
+              refetch();
+            } else {
+              errorAlert();
+            }
+          })
+          .catch(() => errorAlert());
+      }
+    });
+  };
 
   if (isLoading) {
     return <LoadingSpinner />;
@@ -48,7 +84,10 @@ const MyLinksPage = () => {
   return (
     <div>
       {myLinks.map((link: Link) => (
-        <div className="card max-w-md w-full border rounded bg-base-100 card-sm shadow-sm">
+        <div
+          key={link._id}
+          className="card max-w-md w-full border rounded bg-base-100 card-sm shadow-sm"
+        >
           <div className="card-body">
             <h2 className="card-title truncate">{link.title}</h2>
             <p className="flex items-center gap-2">
@@ -86,7 +125,10 @@ const MyLinksPage = () => {
                   <FaEdit />
                 </button>
               </Link>
-              <button className="btn btn-primary bg-[#d86248]">
+              <button
+                onClick={() => handleDeleteImage(link._id)}
+                className="btn btn-primary bg-[#d86248]"
+              >
                 <MdDelete />
               </button>
             </div>
