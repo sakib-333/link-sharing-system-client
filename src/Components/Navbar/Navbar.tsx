@@ -30,7 +30,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-base-300 shadow-sm">
+    <div className="navbar bg-base-300 shadow-sm container mx-auto px-4">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -69,14 +69,14 @@ const Navbar = () => {
         <>
           {user ? (
             <>
-              <img
-                className="w-10 h-10 rounded-full"
-                src={user.photoURL || defaultUser}
-                alt="img"
-              />
-              <button className="btn" onClick={handleLogout}>
-                Logout
-              </button>
+              <div className="tooltip tooltip-bottom" data-tip="Logout">
+                <img
+                  onClick={handleLogout}
+                  className="w-10 h-10 rounded-full cursor-pointer"
+                  src={user.photoURL || defaultUser}
+                  alt="img"
+                />
+              </div>
             </>
           ) : (
             <Link to={"/login"}>
