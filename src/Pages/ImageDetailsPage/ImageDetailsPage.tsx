@@ -27,7 +27,7 @@ const ImageDetailsPage = () => {
   const handleCopy = () => {
     const timerID = setTimeout(() => {
       setCopy("Copy");
-    }, 5000);
+    }, 2000);
 
     setCopy("Copied");
 
