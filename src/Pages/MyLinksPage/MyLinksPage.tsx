@@ -1,7 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../Hooks/useAxiosPublic/useAxiosPublic";
 import LoadingSpinner from "../../Components/LoadingSpinner/LoadingSpinner";
-import LinkCard from "../../Components/LinkCard/LinkCard";
 
 const MyLinksPage = () => {
   const axiosPublic = useAxiosPublic();
@@ -22,11 +21,7 @@ const MyLinksPage = () => {
     return <LoadingSpinner />;
   }
 
-  return (
-    <div>
-      <LinkCard />
-    </div>
-  );
+  return <div>{/* <LinkCard /> */}</div>;
 };
 
 export default MyLinksPage;
