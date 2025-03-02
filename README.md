@@ -2,8 +2,7 @@
 
 ## Overview
 
-A system where users can generate shareable links for content (text, images, or files) and set them as public or private. Public links can be accessed by anyone, while private links require authentication or a password for access.
-integration
+A system where users can generate shareable links for content images and set them as public or private. Public links can be accessed by anyone, while private links require authentication or a password for access.
 
 # Purpose
 
