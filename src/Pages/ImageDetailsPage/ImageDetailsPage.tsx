@@ -6,6 +6,7 @@ import { useState } from "react";
 import { FaUser } from "react-icons/fa";
 import { IoIosLink } from "react-icons/io";
 import { GiClick } from "react-icons/gi";
+import { errorAlert } from "../../Alerts/ErrorAlert/errorAlert";
 
 const ImageDetailsPage = () => {
   const [copy, setCopy] = useState<"Copy" | "Copied">("Copy");
@@ -24,12 +25,17 @@ const ImageDetailsPage = () => {
     },
   });
 
-  const handleCopy = () => {
+  const handleCopy = async (imgURL: string) => {
     const timerID = setTimeout(() => {
       setCopy("Copy");
     }, 2000);
 
-    setCopy("Copied");
+    try {
+      await navigator.clipboard.writeText(imgURL);
+      setCopy("Copied");
+    } catch {
+      errorAlert();
+    }
 
     return () => clearTimeout(timerID);
   };
@@ -57,7 +63,7 @@ const ImageDetailsPage = () => {
               <IoIosLink />
             </span>
             <p>{image.imageURL}</p>
-            <button onClick={handleCopy}>{copy}</button>
+            <button onClick={() => handleCopy(image.imageURL)}>{copy}</button>
           </div>
           <p className="flex items-center gap-2">
             <span>
